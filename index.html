@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            background-color: bisque;
+            padding: 2rem;
+            border-radius: .5rem;
+            max-width: 50%;
+        }
+
+
+        label {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            max-width: 100%;
+        }
+
+        input {
+            margin-left: 20px;
+        }
+
+        #feedback {
+            color: deeppink;
+        }
+
+
+        #feedback { color: red }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <label for="username">Username
+        <input type="text" id="username">
+    </label>
+
+    <label for="password">Password
+        <input type="password" id="password">
+    </label>
+
+    <p id="feedback"></p>
+</div>
+
+
+<script>
+    function checkUsername() {
+        var elMsg = document.getElementById('feedback')
+
+        if (this.value.length < 5) {
+            elMsg.textContent = 'Username must be 5 characters or more'
+        }
+    }
+
+    var el = document.getElementById('username')
+    el.onblur = checkUsername
+
+</script>
+
+</body>
+</html>
