@@ -1,0 +1,7 @@
+{
+  "name": "argument",
+  "version": "1.0.0",
+  "scripts": {
+    "argument": "echo \"The value of --foo is '${npm_config_foo}'\""
+  }
+}

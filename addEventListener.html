@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+            <form class="form-signin">
+                <h2 class="form-signin-heading">Please sign in</h2>
+
+                <div id="PINcode" class="form-group has-feedback">
+                    <label for="inputPINcode" class="sr-only">PIN Code</label>
+                    <input type="text" id="inputPINcode" class="form-control" placeholder="PINcode" required="">
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    <span id="feedbackPINcode" class="help-block">Example block-level help for PIN Code</span>
+                </div>
+
+                <div id="userName" class="form-group has-feedback">
+                    <label for="inputUsername" class="sr-only">Email address</label>
+                    <input type="text" id="inputUsername" class="form-control" placeholder="Username" required="" autofocus="">
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    <span id="feedbackUserName" class="help-block">Example block-level help text here.2</span>
+                </div>
+
+                <div id="password" class="form-group has-feedback">
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                    <p id="feedbackPassword" class="help-block">Example block-level help text here.</p>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+
+                <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+
+    function checkUsername() {
+        const userName = document.getElementById('userName')
+
+        const glyphicon = userName.getElementsByClassName('glyphicon')[0] // return array
+        const helpBlock = userName.getElementsByClassName('help-block')[0] // return array
+
+        let userNameClassList = userName.classList;
+        let glyphiconClassList = glyphicon.classList;
+
+        if (this.value.length < 5) {
+            userNameClassList.remove('has-success')
+            glyphiconClassList.remove('glyphicon-ok')
+
+            userNameClassList.add('has-error')
+            glyphiconClassList.add('glyphicon-remove')
+
+            helpBlock.textContent = 'Username must be 5 characters or more'
+            helpBlock.style.display = 'block'
+        }
+        else {
+            // helpBlock.style.display = 'none'
+            helpBlock.textContent = ''
+
+            userNameClassList.remove('has-error')
+            glyphiconClassList.remove('glyphicon-remove')
+
+            userNameClassList.add('has-success')
+            glyphiconClassList.add('glyphicon-ok')
+        }
+    }
+
+    function checkMinLength(element, minLength, message) {
+        const target = element.target
+        const glyphicon = target.nextElementSibling
+        const helpBlock = glyphicon.nextElementSibling
+
+        console.log(helpBlock)
+    }
+
+    // Hide all help-block
+    const helpBlocks = document.getElementsByClassName('help-block') // return HTMLCollection
+    // convert HTMLCollection to Array for can use forEach()
+    let helpBlocksArray = Array.from(helpBlocks)
+
+    helpBlocksArray.forEach(function (helpBlock) {
+        helpBlock.style.display = 'none'
+    })
+
+    const elUsername = document.getElementById('inputUsername');
+
+    // elUsername.addEventListener('keydown', checkUsername, false)        // version 1
+
+    elUsername.addEventListener('blur', function (element) {
+        checkMinLength(element, 5, 'Min. length must be 5 characters or more!')
+    }, false)
+
+</script>
+
+
+
+</body>
+</html>
